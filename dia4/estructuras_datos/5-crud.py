@@ -64,10 +64,29 @@ while(True):
         print("=" * ANCHO)
         print(" " * 10 + "ACTUALIZAR ALUMNO")
         print("=" * ANCHO)
+        codigo = input("Ingrese DNI del alumno : ")
+        if codigo in dic_alumnos:
+            print(f"Alumno encontrado : {dic_alumnos[codigo]['nombre']}")
+            print("Ingrese nuevos datos para el alumno o presionar enter para conversar datos anteriores...")
+            nuevo_nombre = input(f"Ingrese nuevo nombre({dic_alumnos[codigo]['nombre']}): ")
+            nuevo_email = input(f"Ingrese nuevo email({dic_alumnos[codigo]['email']}): ")
+            if nuevo_nombre:
+                dic_alumnos[codigo]['nombre'] = nuevo_nombre
+            if nuevo_email:
+                dic_alumnos[codigo]['email'] = nuevo_email 
+            print('Alumno actualizado...')
+        else:
+            print("Alumno no encontrado...")
     if opcion == 4:
         print("=" * ANCHO)
         print(" " * 10 + "ELIMINAR ALUMNO")
         print("=" * ANCHO)
+        codigo = input("Ingrese DNI del alumno : ")
+        if codigo in dic_alumnos:
+            del dic_alumnos[codigo]
+            print('Alumno eliminado...')
+        else:
+            print("Alumno no encontrado...")
     if opcion == 5:
         print("=" * ANCHO)
         print(" " * 10 + "SALIENDO DEL SISTEMA...")
