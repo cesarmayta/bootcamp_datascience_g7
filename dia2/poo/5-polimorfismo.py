@@ -35,7 +35,6 @@ alumno1 = Alumno("Juan Perez", "jperez@gmail.com",20)
 #alumno1.mostrar()
 profesor1 = Profesor("Ana Gomez", "agomez@codigo.edu.pe","Desarrollo Web Full Stack")
 #profesor1.mostrar()
-
 # función que usa polimorfismo
 def presentar_datos(persona):
     persona.mostrar()
