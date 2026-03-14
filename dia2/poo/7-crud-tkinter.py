@@ -12,7 +12,7 @@ class TkAlumno:
     def __init__(self,app):
         self.app = app
         self.app.title("CRUD DE ALUMNOS")
-        self.app.geometry("640x480")
+        self.app.geometry("640x580")
         
         frame = LabelFrame(self.app, text="Datos del Alumno")
         frame.grid(row=0, column=0, columnspan=2, pady=10, padx=10)
@@ -58,6 +58,16 @@ class TkAlumno:
         self.btn_eliminar = Button(frame,text='Eliminar Alumno',command=self.eliminar_alumno)
         self.btn_eliminar.grid(row=5,column=0,columnspan=2)
         
+        self.btn_editar = Button(frame,text='Editar Alumno',command=self.editar_alumno)
+        self.btn_editar.grid(row=6,column=0,columnspan=2)
+        
+        self.btn_actualizar = Button(frame,text='Actualizar Alumno',command=self.actualizar_alumno)
+        self.btn_actualizar.grid(row=7,column=0,columnspan=2)
+        
+        
+        
+        
+        
     def insertar_alumno(self):
         dni = self.txt_dni.get()
         nombre = self.txt_nombre.get()
@@ -65,6 +75,7 @@ class TkAlumno:
         
         nuevo_alumno = (dni,nombre,email)
         self.tree.insert('',END,values=nuevo_alumno)
+        self.limpiar_campos()
         
     def eliminar_alumno(self):
         seleccion = self.tree.selection()
@@ -73,6 +84,35 @@ class TkAlumno:
                 self.tree.delete(item)
         else:
             messagebox.showerror('alerta',"por favor seleccione un registro")
+            
+    def editar_alumno(self):
+        seleccion = self.tree.selection()
+        if seleccion:
+            self.item_seleccionado = seleccion[0]
+            valores = self.tree.item(self.item_seleccionado,"values")
+            self.limpiar_campos()
+            self.txt_dni.insert(0,valores[0])
+            self.txt_nombre.insert(0,valores[1])
+            self.txt_email.insert(0,valores[2])
+        else:
+            messagebox.showerror('alerta',"por favor seleccione un registro")
+    
+    def actualizar_alumno(self):
+        if not self.item_seleccionado:
+            messagebox.showerror("Error", "Primero cargue un alumno para editar")
+            return
+        
+        dni = self.txt_dni.get()
+        nombre = self.txt_nombre.get()
+        email = self.txt_email.get()
+        
+        self.tree.item(self.item_seleccionado, values=(dni, nombre, email))
+        messagebox.showinfo("Correcto", "Alumno actualizado correctamente")
+    
+    def limpiar_campos(self):
+        self.txt_dni.delete(0, END)
+        self.txt_nombre.delete(0, END)
+        self.txt_email.delete(0, END)
         
 app = Tk()
 
