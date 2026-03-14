@@ -67,7 +67,12 @@ class TkAlumno:
         self.tree.insert('',END,values=nuevo_alumno)
         
     def eliminar_alumno(self):
-        pass
+        seleccion = self.tree.selection()
+        if seleccion:
+            for item in seleccion:
+                self.tree.delete(item)
+        else:
+            messagebox.showerror('alerta',"por favor seleccione un registro")
         
 app = Tk()
 
