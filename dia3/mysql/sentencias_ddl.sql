@@ -13,3 +13,10 @@ CREATE TABLE alumno(
     nombre VARCHAR(255) NOT NULL,
     email VARCHAR(100)
 );
+
+-- MODIFICAR UNA TABLA
+ALTER TABLE alumno
+ADD COLUMN nota INT default 0;
+
+-- ELIMINAR TABLA
+DROP TABLE alumno;
