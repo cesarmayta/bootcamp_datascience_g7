@@ -7,6 +7,13 @@ CREATE TABLE alumno(
     curso VARCHAR(100),
     nota DOUBLE
 );
+
+CREATE TABLE alumno(  
+    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nro_documento VARCHAR(10) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(100)
+);
 insert into alumno(nro_documento,nombre)
 VALUES
 ('100','cesar'),
@@ -35,8 +42,6 @@ CREATE TABLE nota(
     FOREIGN KEY (alumno_id) REFERENCES alumno(id),
     FOREIGN KEY (curso_id) REFERENCES curso(id)
 );
-
-
 
 insert into nota(alumno_id,curso_id,nota)
 values (1,1,12),
