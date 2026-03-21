@@ -1,5 +1,5 @@
 DROP TABLE ALUMNO;
-CREATE TABLE alumno(  
+CREATE TABLE alumno_antiguo(  
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nro_documento VARCHAR(10) NOT NULL,
     nombre VARCHAR(255) NOT NULL,
@@ -7,6 +7,13 @@ CREATE TABLE alumno(
     curso VARCHAR(100),
     nota DOUBLE
 );
+
+insert into alumno_antiguo(nro_documento,nombre,curso,nota)
+VALUES
+('100','cesar','GIT',20),
+('100','cesar','PYTHON',11),
+('100','cesar','MYSQL',15);
+
 
 CREATE TABLE alumno(  
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -34,7 +41,7 @@ CREATE TABLE curso(
 
 insert into curso(nombre) values ('GIT'),('PYTHON'),('MYSQL');
 
-CREATE TABLE nota(  
+CREATE TABLE nota( 
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     alumno_id int NOT NULL,
     curso_id int NOT NULL,
