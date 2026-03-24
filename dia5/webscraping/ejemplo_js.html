@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Selenium JS</title>
+
+    <script>
+        function cargarDatos() {
+
+            setTimeout(function() {
+
+                document.getElementById("resultado").innerHTML =
+                    "esto fue cambiado por javascript";
+
+            }, 2000);
+
+        }
+
+        window.onload = cargarDatos;
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Listado dinámico</h1>
+
+    <div id="resultado">
+        Cargando datos...
+    </div>
+
+</body>
+</html>
