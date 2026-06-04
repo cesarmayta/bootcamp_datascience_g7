@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "housing-predictor-cmayta"
-version = "1.0.0"
+version = "1.0.3"
 description = "Predicción de precios de viviendas usando scikit-learn"
 authors = [
   {name="Cesar Mayta"}
 ]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 
 dependencies = [
     "numpy",
@@ -25,4 +25,4 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-housing_predictor = ["models/*.pkl"]
+housing_predictor = ["model/*.pkl"]

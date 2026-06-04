@@ -6,9 +6,9 @@ import os
 # Obtener ruta del paquete
 BASE_DIR = os.path.dirname(__file__)
 
-MODEL_PATH = os.path.join(BASE_DIR, "models", "model.pkl")
-SCALER_X_PATH = os.path.join(BASE_DIR, "models", "scaler_x.pkl")
-SCALER_Y_PATH = os.path.join(BASE_DIR, "models", "scaler_y.pkl")
+MODEL_PATH = os.path.join(BASE_DIR, "model", "model.pkl")
+SCALER_X_PATH = os.path.join(BASE_DIR, "model", "scaler_x.pkl")
+SCALER_Y_PATH = os.path.join(BASE_DIR, "model", "scaler_y.pkl")
 
 # cargar modelo solo una vez
 model = joblib.load(MODEL_PATH)
