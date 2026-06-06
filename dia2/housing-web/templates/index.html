@@ -138,7 +138,7 @@
     <h1 class="title">Predicción de precio de casas con Machine Learning</h1>
     <p class="description">Selecciona el número de habitaciones y calcula el precio estimado de una casa</p>
 
-    <form class="form-group">
+    <form class="form-group" action="/" method="POST">
       <label for="rooms">Número de habitaciones</label>
       <select id="rooms" name="rooms">
         <option value="1">1</option>
@@ -152,12 +152,12 @@
         <option value="9">9</option>
         <option value="10">10</option>
       </select>
-      <button type="button">Calcular precio</button>
+      <button type="submit">Calcular precio</button>
     </form>
 
     <div class="result">
       <p class="result-label">Precio estimado</p>
-      <p class="result-value"><span>$</span>1,000 dólares</p>
+      <p class="result-value"><span>$</span>{{precio}} dólares</p>
     </div>
   </main>
 </body>
