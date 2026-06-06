@@ -1,2 +1,4 @@
 flask
-housing-predictor-cmayta
+joblib
+numpy
+scikit-learn
