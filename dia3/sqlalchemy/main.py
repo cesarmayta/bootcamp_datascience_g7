@@ -39,3 +39,66 @@ class Persona(Base):
 # ------------------------------------
 
 Base.metadata.create_all(engine)
+
+# ----------------------------------
+# Crear sesión
+# ----------------------------------
+Session = sessionmaker(bind=engine)
+
+session = Session()
+
+# ----------------------------------
+# INSERT
+# ----------------------------------
+persona = Persona(
+    nombre="Juan",
+    edad=25
+)
+session.add(persona)
+
+session.commit()
+print("Persona insertada")
+
+# ----------------------------------
+# SELECT
+# ----------------------------------
+
+print("\nListado:")
+
+personas = session.query(Persona).all()
+
+for persona in personas:
+    print(persona)
+    
+# ----------------------------------
+# SELECT POR ID
+# ----------------------------------
+
+persona = session.query(Persona).filter(
+    Persona.id == 1
+).first()
+
+print("\nPersona encontrada")
+print(persona)
+
+# ----------------------------------
+# UPDATE
+# ----------------------------------
+
+persona.edad = 40
+
+session.commit()
+
+print("\nPersona actualizada")
+
+# ----------------------------------
+# DELETE
+# ----------------------------------
+
+session.delete(persona)
+session.commit()
+
+# ----------------------------------
+# Cerrar sesión
+# ----------------------------------
+session.close()
