@@ -24,3 +24,35 @@ def listar_productos(categoria: str="todos",precio_min: float=0):
             {"id": 2, "nombre": "Mouse", "precio": 80}
         ]
     }
+    
+# Validación con Pydantic
+#sin validación
+@app.post("/productos")
+def crear_producto(data: dict):
+    nombre = data.get("nombre")
+    precio = data.get("precio")
+    
+    return {
+        "nombre":nombre,
+        "precio":precio
+    }
+#con validación usando pydantic
+from pydantic import BaseModel, Field
+
+class Producto(BaseModel):
+    nombre: str = Field(
+        min_length=3,
+        max_length=50
+    )
+
+    precio: float = Field(
+        gt=0
+    )
+    
+@app.post("/productosval")
+def crear_producto_validado(producto: Producto):
+
+    return {
+        "nombre": producto.nombre,
+        "precio": producto.precio
+    }
