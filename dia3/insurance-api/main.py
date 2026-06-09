@@ -8,25 +8,47 @@ model = joblib.load('./model/model.pkl')
 sc_x = joblib.load('./model/scaler_x.pkl')
 sc_y = joblib.load('./model/scaler_y.pkl')
 
+def predict_charges(smoker, age, bmi):
+    """
+    Predice los cargos de seguro para nuevos valores.
+
+    Args:
+        smoker (int): 0 for 'no' smoker, 1 for 'yes' smoker.
+        age (int): Age of the individual.
+        bmi (float): BMI of the individual.
+
+    Returns:
+        float: Predicted insurance charges.
+    """
+    new_data = np.array([[smoker, age, bmi]])
+    scaled_new_data = sc_x.transform(new_data)
+    scaled_prediction = model.predict(scaled_new_data)
+    prediction = sc_y.inverse_transform(scaled_prediction)
+
+    return round(prediction[0][0],2)
+
 app = FastAPI()
 
 #schema
-class Housing(BaseModel):
-    rooms: int
+class Insurance(BaseModel):
+    smoker: int
+    age: int
+    bmi: float
 
 @app.get("/")
 def home():
-    return {"message": "Housing API"}
+    return {"message": "Insurance API"}
 
-@app.post("/housing_price")
-def housing_price(housing: Housing):
-    rooms = housing.rooms
-    rooms_sc = sc_x.transform(np.array([[rooms]]))
-    prediction_sc = model.predict(rooms_sc)
-    prediction = sc_y.inverse_transform(prediction_sc) * 1000
-    price = round(prediction[0][0],2)
+@app.post("/insurance_price")
+def insurance_price(housing: Insurance):
+    smoker = housing.smoker
+    age = housing.age
+    bmi = housing.bmi
+    charges = predict_charges(smoker,age,bmi)
     
     return {
-        "rooms":rooms,
-        "price":price
+        "smoker":smoker,
+        "age":age,
+        "bmi":bmi,
+        "charges":charges
     }
