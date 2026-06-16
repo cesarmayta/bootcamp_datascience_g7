@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-joblib
-numpy
-scikit-learn
-sqlalchemy
-python-decouple
-mysqlclient

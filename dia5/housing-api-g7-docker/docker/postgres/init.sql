@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS housing (
-    id SERIAL PRIMARY KEY,
-    rooms INTEGER NOT NULL,
-    price DOUBLE PRECISION
-);
-
-CREATE INDEX IF NOT EXISTS ix_housing_id ON housing (id);
