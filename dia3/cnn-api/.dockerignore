@@ -1,0 +1,15 @@
+.git
+.gitignore
+.DS_Store
+.venv
+venv
+__pycache__
+*.py[cod]
+*.log
+.pytest_cache
+.mypy_cache
+.idea
+.vscode
+images
+cnn-test.py
+plastic_02566.jpg
